@@ -22,7 +22,7 @@ module.exports = function (req, res, next) {
       segment.addMetadata("headers", event.headers);
 
     } catch (err) {
-      winston.err(err);
+      winston.error(err);
     }
   }
   if (next && typeof next === 'function') {
