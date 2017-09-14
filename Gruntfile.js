@@ -16,8 +16,8 @@ module.exports = function (grunt) {
         options: {
           coverageFolder: 'coverage*',
           check: {
-            lines: 50,
-            statements: 50
+            lines: 80,
+            statements: 80
           }
         }
       }

@@ -1,6 +1,6 @@
 {
   "name": "annot8-express",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Small piece of express middleware, that adds additional common annotations to the segment.",
   "main": "src/index.js",
   "scripts": {
