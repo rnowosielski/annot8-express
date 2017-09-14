@@ -6,7 +6,7 @@ const expect = chai.expect;
 const mock = require('mock-require');
 
 mock('winston', {
-  err: function(err) {
+  error: function(err) {
   }});
 
 let segment = {};
