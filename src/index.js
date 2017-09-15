@@ -7,6 +7,9 @@ module.exports = function (req, res, next) {
     let segment = AWSXRay.getSegment();
     let event = req.apiGateway ? req.apiGateway.event : null;
 
+    if (event == null) {
+      winston.info("Make sure to add the annot8 middleware after call to awsServerlessExpressMiddleware.eventContext()");
+    }
     try {
       let query = event.queryStringParameters ? `?${Object.keys(event.queryStringParameters).map(k => `${k}=${event.queryStringParameters[k]}`).join('&')}` : "";
       segment.addAnnotation("Method", event.httpMethod);
