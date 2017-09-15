@@ -12,8 +12,12 @@ In order to install perform
 
 ## Usage
 
-Simply add the middleware after the open segment statement
-
-
+Simply add the middleware to your express app after `app.use(AWSXRayExpress.openSegment('Segment'));` and `app.use(awsServerlessExpressMiddleware.eventContext());` calls and before `app.use(AWSXRayExpress.closeSegment());`  
+                                                    
     let annot8 = require("annot8-express");
     app.use(annot8);
+
+     
+      
+    
+
