@@ -7,7 +7,10 @@ const mock = require('mock-require');
 
 mock('winston', {
   error: function(err) {
-  }});
+  },
+  info: function(err) {
+  }
+});
 
 let segment = {};
 
