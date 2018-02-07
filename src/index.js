@@ -16,9 +16,10 @@ module.exports = function (req, res, next) {
         segment.addAnnotation("Url", (event.headers.Host.endsWith(".cimpress.io")) ? `${event.headers.Host}${event.path}` : `${event.headers.Host}/${event.requestContext.stage}${event.path}${query}`);
         segment.addAnnotation("ClientIp", event.requestContext.identity.sourceIp);
         segment.addAnnotation("UserAgent", event.headers["User-Agent"]);
-        segment.addAnnotation("PrincipalId", event.requestContext.authorizer.principalId);
+        if (event && event.requestContext && event.requestContext.authorizer) {
+          segment.addAnnotation("PrincipalId", event.requestContext.authorizer.principalId);
+        }
         segment.addAnnotation("Authorization", event.headers.Authorization);
-
         segment.addAnnotation("Stage", event.requestContext.stage);
 
         segment.addMetadata("query", event.queryStringParameters);
