@@ -56,7 +56,7 @@ describe("Annot8", function () {
       req.apiGateway.event.queryStringParameters = "";
       req.apiGateway.event.httpMethod = "GET";
       req.apiGateway.event.headers = {};
-      req.apiGateway.event.headers.Host = "http://test";
+      req.apiGateway.event.headers.Host = "http://test.amazonaws.com";
       req.apiGateway.event.headers.Authorization = "token2f213887-d9ad-4dbc-a89d-d69cd6599fb5";
       req.apiGateway.event.headers["User-Agent"] = "Some browser";
       req.apiGateway.event.requestContext = {};
@@ -75,23 +75,22 @@ describe("Annot8", function () {
       expect(segment.addAnnotation.getCall(0).args[1]).to.be.equal("GET");
 
       expect(segment.addAnnotation.getCall(1).args[0]).to.be.equal("Url");
-      expect(segment.addAnnotation.getCall(1).args[1]).to.be.equal("http://test/master/v1/test");
+      expect(segment.addAnnotation.getCall(1).args[1]).to.be.equal("http://test.amazonaws.com/master/v1/test");
 
-      expect(segment.addAnnotation.getCall(2).args[0]).to.be.equal("ClientIp");
-      expect(segment.addAnnotation.getCall(2).args[1]).to.be.equal("123.123.123.123");
+      expect(segment.addAnnotation.getCall(2).args[0]).to.be.equal("UserAgent");
+      expect(segment.addAnnotation.getCall(2).args[1]).to.be.equal("Some browser");
 
-      expect(segment.addAnnotation.getCall(3).args[0]).to.be.equal("UserAgent");
-      expect(segment.addAnnotation.getCall(3).args[1]).to.be.equal("Some browser");
+      expect(segment.addAnnotation.getCall(3).args[0]).to.be.equal("Authorization");
+      expect(segment.addAnnotation.getCall(3).args[1]).to.be.equal("token2f213887-d9ad-4dbc-a89d-d69cd6599fb5");
 
-      expect(segment.addAnnotation.getCall(4).args[0]).to.be.equal("PrincipalId");
-      expect(segment.addAnnotation.getCall(4).args[1]).to.be.equal("user@someid");
+      expect(segment.addAnnotation.getCall(4).args[0]).to.be.equal("ClientIp");
+      expect(segment.addAnnotation.getCall(4).args[1]).to.be.equal("123.123.123.123");
 
-      expect(segment.addAnnotation.getCall(5).args[0]).to.be.equal("Authorization");
-      expect(segment.addAnnotation.getCall(5).args[1]).to.be.equal("token2f213887-d9ad-4dbc-a89d-d69cd6599fb5");
+      expect(segment.addAnnotation.getCall(5).args[0]).to.be.equal("PrincipalId");
+      expect(segment.addAnnotation.getCall(5).args[1]).to.be.equal("user@someid");
 
       expect(segment.addAnnotation.getCall(6).args[0]).to.be.equal("Stage");
       expect(segment.addAnnotation.getCall(6).args[1]).to.be.equal("master");
-
     });
 
   });
